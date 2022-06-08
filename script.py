@@ -31,9 +31,13 @@ def _download_article(sess, link):
 def download_articles(links, max_workers=64):
     sess = requests.Session()
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        future_to_url = {executor.submit(_download_article, sess, link): link
-                         for link in links}
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=max_workers
+    ) as executor:
+        future_to_url = {
+            executor.submit(_download_article, sess, link): link
+            for link in links
+        }
         for future in concurrent.futures.as_completed(future_to_url):
             future_to_url[future]
 

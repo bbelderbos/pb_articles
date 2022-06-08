@@ -8,7 +8,7 @@ ARTICLES_ENDPOINT = "https://codechalleng.es/api/articles/"
 ARTICLES_DIR = Path("articles")
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
-# requests_cache.install_cache('cache.db', backend='sqlite', expire_after=3600)
+requests_cache.install_cache('cache.db', backend='sqlite', expire_after=3600)
 
 
 def get_article_urls():

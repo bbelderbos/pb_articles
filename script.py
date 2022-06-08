@@ -1,6 +1,5 @@
 from pathlib import Path
 import concurrent.futures
-import threading
 
 import requests
 import requests_cache
@@ -37,19 +36,6 @@ def download_articles(links, n=200):
                          for link in links}
         for future in concurrent.futures.as_completed(future_to_url):
             future_to_url[future]
-
-    """
-    threads = []
-    for link in links[:n]:
-        t = threading.Thread(target=_download_article, args=(sess, link))
-        threads.append(t)
-        t.start()
-        # _download_article(sess, link)
-
-    # wait for the threads to complete (like free on memory)
-    for t in threads:
-        t.join()
-    """
 
 
 if __name__ == "__main__":

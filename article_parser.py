@@ -12,32 +12,29 @@ Tags: {tags}
 
 {text}
 """
-ERROR_RESPONSE = '500 Internal Server Error'
-NOT_FOUND = '404 Not Found'
+
+
+class ArticleException(Exception):
+    """Exception to be used when we hit an invalid article"""
 
 
 def parse_html_to_text(file_path: Path, out_dir: Path = OUT_DIR) -> None:
     """Takes an article filepath, parses it and writes the output to
-       a text file"""
-    article = Article('')
+    a text file"""
+    article = Article("")
     text = file_path.read_text()
     article.set_html(text)
     article.parse()
 
-    # TODO: clean data
-    if article.title == ERROR_RESPONSE:
-        print("article 500 response")
-        return None
-    if article.title == NOT_FOUND:
-        print("article 404 response")
-        return None
+    if not article.authors:
+        raise ArticleException("No authors, seems invalid article")
 
     text = ARTICLE.format(
         title=article.title,
         author=article.authors[0],
         published=article.publish_date,
         tags=", ".join(article.tags),
-        text=article.text
+        text=article.text,
     )
     out_file = out_dir / file_path.stem
     out_file.write_text(text)

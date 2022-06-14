@@ -30,7 +30,7 @@ def _download_article(sess, link):
     filepath.write_text(resp.text)
 
 
-def download_articles(links, max_workers=64):
+def download_articles(links, max_workers=32):
     sess = requests.Session()
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:

@@ -1,3 +1,5 @@
 articles
+articles_txt
 *.db
 venv
+*.pdf

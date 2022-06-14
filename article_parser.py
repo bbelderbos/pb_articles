@@ -12,14 +12,14 @@ Tags: {tags}
 
 {text}
 """
-ERROR_RESPONSE = '500 Internal Server Error'
-NOT_FOUND = '404 Not Found'
+ERROR_RESPONSE = "500 Internal Server Error"
+NOT_FOUND = "404 Not Found"
 
 
 def parse_html_to_text(file_path: Path, out_dir: Path = OUT_DIR) -> None:
     """Takes an article filepath, parses it and writes the output to
-       a text file"""
-    article = Article('')
+    a text file"""
+    article = Article("")
     text = file_path.read_text()
     article.set_html(text)
     article.parse()
@@ -37,7 +37,7 @@ def parse_html_to_text(file_path: Path, out_dir: Path = OUT_DIR) -> None:
         author=article.authors[0],
         published=article.publish_date,
         tags=", ".join(article.tags),
-        text=article.text
+        text=article.text,
     )
     out_file = out_dir / file_path.stem
     out_file.write_text(text)

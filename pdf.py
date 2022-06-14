@@ -21,8 +21,11 @@ def create_pdf(articles, output_file=DEFAULT_NAME):
         with open(article, "rb") as fh:
             txt = fh.read().decode("latin1")
 
-        title, *article_txt = txt.splitlines()
         pdf.set_fill_color(200, 220, 255)
+
+        title, *article_txt = txt.splitlines()
+        title.removeprefix("Title: ")
+
         pdf.cell(0, 6, title, 0, 1, "L", 1)
         pdf.ln(4)
 

@@ -14,10 +14,6 @@ Tags: {tags}
 """
 
 
-class ArticleException(Exception):
-    """Exception to be used when we hit an invalid article"""
-
-
 def parse_html_to_text(file_path: Path, out_dir: Path = OUT_DIR) -> None:
     """Takes an article filepath, parses it and writes the output to
     a text file"""
@@ -26,12 +22,14 @@ def parse_html_to_text(file_path: Path, out_dir: Path = OUT_DIR) -> None:
     article.set_html(text)
     article.parse()
 
-    if not article.authors:
-        raise ArticleException("No authors, seems invalid article")
+    if article.authors:
+        author = article.authors[0]
+    else:
+        author = "-"
 
     text = ARTICLE.format(
         title=article.title,
-        author=article.authors[0],
+        author=author,
         published=article.publish_date,
         tags=", ".join(article.tags),
         text=article.text,

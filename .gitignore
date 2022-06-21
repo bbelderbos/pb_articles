@@ -4,3 +4,4 @@ articles_txt
 venv
 *.pdf
 links.txt
+dist

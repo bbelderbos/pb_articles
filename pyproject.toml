@@ -5,6 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "pbarticles"
 authors = [{name = "Bob Belderbos", email = "bob@pybit.es"}]
+readme = "README.md"
 requires-python = ">=3.9"
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]

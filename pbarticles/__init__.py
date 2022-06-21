@@ -1,3 +1,3 @@
 """A package to make a PDF from Pybites articles"""
 
-__version__ = "0.2"
+__version__ = "0.3"

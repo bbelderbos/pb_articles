@@ -15,7 +15,7 @@ def _get_date(article):
     return parse(date)
 
 
-def main(
+def _main(
     download: bool = typer.Option(False, "--download"),
     parse: bool = typer.Option(False, "--parse"),
     pdf: bool = typer.Option(False, "--pdf"),
@@ -50,5 +50,9 @@ def main(
         create_pdf(sorted_articles)
 
 
+def main():
+    typer.run(_main)
+
+
 if __name__ == "__main__":
-    typer.run(main)
+    main()

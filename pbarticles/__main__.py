@@ -1,8 +1,10 @@
+import typer
+
 from dateutil.parser import parse
 
-from downloader import get_article_urls, download_articles
-from article_parser import parse_html_to_text, IN_DIR, OUT_DIR, ArticleException
-from pdf import create_pdf
+from .downloader import get_article_urls, download_articles
+from .article_parser import parse_html_to_text, IN_DIR, OUT_DIR, ArticleException
+from .pdf import create_pdf
 
 
 def _get_date(article):
@@ -15,6 +17,7 @@ def main():
     # TODO: add Typer to run individual things, e.g. download, parse, pdf
     links = get_article_urls()
     print(f"{len(links)} articles retrieved from Pybites Article API")
+    links = links[:5]
 
     download_articles(links)
 
